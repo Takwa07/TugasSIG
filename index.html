@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Website dengan Peta GeoJSON</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <style>
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+        </style>
+        <nav style="background-color: green;" class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a style="color: white;" class="navbar-brand" href="#">Lobster</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a style="color: white;" class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="color: white;" class="nav-link" href="#tentang">Tentang</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="color: white;" class="nav-link" href="#daftar">Daftar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="color: white;" class="nav-link" href="#detail">Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a style="color: white;" class="nav-link" href="#kontak">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="map" style="height: 400px;"></div>
+        <section id="tentang" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Tentang Kami</h2>
+                <p>
+                    Selamat datang di Lobster, tempat terbaik untuk menikmati berbagai hidangan berbasis ikan dan lobster segar. Kami berdedikasi untuk menyediakan bahan-bahan berkualitas tinggi yang diolah oleh chef berpengalaman kami. 
+            Dengan lokasi strategis di Jl. yos sudarso no.5, Benteng, kami berkomitmen untuk menyajikan pengalaman kuliner yang tak terlupakan untuk Anda dan keluarga.
+                </p>
+                <h5>Visi Kami</h5>
+                <p>
+                    Menjadi restoran terdepan dalam penyediaan makanan berbasis ikan dan lobster di Sulawesi Selatan, dikenal karena rasa, kualitas, dan pelayanan terbaik.
+                </p>
+                <h5>Misi Kami</h5>
+                <ol>
+                    <li>Menyediakan hidangan berkualitas tinggi dengan bahan baku segar.</li>
+                    <li>Membangun hubungan yang kuat dengan pelanggan melalui pelayanan yang ramah dan profesional.</li>
+                    <li>Berpartisipasi dalam pelestarian lingkungan dengan mendukung praktik perikanan berkelanjutan.</li>
+                </ol>
+                <h5>Kami Hargai Pelanggan Kami</h5>
+                <p>
+                    Di Lobster, kami percaya bahwa kepuasan pelanggan adalah yang paling utama. Kami selalu terbuka untuk masukan dan saran untuk meningkatkan layanan kami. 
+            Jangan ragu untuk menghubungi kami melalui halaman Kontak.
+                </p>
+                <div class="text-center">
+                    <img
+                        src="./lobster.jpg"
+                        alt="Lobster"
+                        class="img-fluid rounded"
+                        width="300"
+                    >
+                </div>
+            </div>
+        </section>
+        <section id="daftar" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Daftar</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <img src="./menu1.jpg" class="card-img-top" alt="Lobster Bakar">
+                            <div class="card-body">
+                                <h5 class="card-title">Lobster Bakar</h5>
+                                <p class="card-text">Lobster segar yang dipanggang dengan bumbu spesial kami, disajikan dengan saus lemon.</p>
+                                <p class="card-text fw-bold">Harga: Rp 150.000</p>
+                                <a href="#" style="background-color: green;" class="btn btn-primary">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <img src="./menu2.jpg" class="card-img-top" alt="Sup Ikan">
+                            <div class="card-body">
+                                <h5 class="card-title">Sup Ikan</h5>
+                                <p class="card-text">Sup ikan segar dengan sayuran dan bumbu rempah yang menggugah selera.</p>
+                                <p class="card-text fw-bold">Harga: Rp 50.000</p>
+                                <a href="#" style="background-color: green;" class="btn btn-primary">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <img src="./menu3.jpg" class="card-img-top" alt="Nasi Goreng Seafood">
+                            <div class="card-body">
+                                <h5 class="card-title">Nasi Goreng Seafood</h5>
+                                <p class="card-text">Nasi goreng dengan kombinasi seafood segar dan bumbu spesial, disajikan dengan acar.</p>
+                                <p class="card-text fw-bold">Harga: Rp 45.000</p>
+                                <a href="#" style="background-color: green;" class="btn btn-primary">Pesan Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="detail" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Detail</h2>
+                <div class="row">
+                    <div class="col-12 col-sm-6 mb-4">
+                        <div class="p-5 border rounded shadow-sm bg-white">
+                            <h4>Alamat</h4>
+                            <p>Jalan Raya Sejahtera No. 123,</p>
+                            <p>Kota Bahagia, Provinsi Damai, 98255</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mb-4">
+                        <div class="p-5 border rounded shadow-sm bg-white">
+                            <h4>Jam Operasi</h4>
+                            <p>
+                                <strong>Senin - Jumat:</strong>
+                                10:00 - 22:00
+                            </p>
+                            <p>
+                                <strong>Sabtu - Minggu:</strong>
+                                09:00 - 23:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a style="background-color: green; color: white;" href="#map" class="w-100 btn btn-lg">Lihat di Peta</a>
+                </div>
+            </div>
+        </section>
+        <section id="kontak" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Kontak</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Hubungi Kami</h5>
+                                <p class="card-text">
+                                    <strong>Email:</strong>
+                                    info@restoranlezzat.com
+                                </p>
+                                <p class="card-text">
+                                    <strong>Telepon:</strong>
+                                    (021) 987-6543
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer style="background-color: green;" class="text-center text-lg-start mt-4 fixed-bottom">
+            <div class="text-center p-2">
+                <p style="color: white;">&copy; Lobster | Takwa 2024</p>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const map = L.map("map").setView([-6.116937, 120.457277], 18);
+
+        const umkmData = {
+          name: "Lobster",
+          rating: "4.2",
+          reviews: 33,
+          category: "Usaha Ikan & Lobster",
+          buka: "Buka 07:30 Tutup pukul 21.00",
+          alamat:
+            "Jl. yos sudarso no.5, Benteng, Kec. Benteng, Sulawesi Selatan 92812",
+          phone: "082188883108",
+          coords: [-6.116937, 120.457277],
+          imageUrl: "./lobster.jpg",
+          hours: {
+            Senin: "08.00–00.00",
+            Selasa: "08.00–00.00",
+            Rabu: "08.00–00.00",
+            Kamis: "08.00–00.00",
+            Jumat: "08.00–02.00",
+            Sabtu: "08.00–02.00",
+            Minggu: "08.00–00.00",
+          },
+        };
+
+        const marker = L.marker(umkmData.coords).addTo(map);
+
+        // Menambahkan tooltip permanen pada marker
+        marker.bindTooltip(umkmData.name, {
+          permanent: true,
+          direction: "top",
+          className: "marker-tooltip",
+        });
+
+        marker.bindPopup(`
+                <div class="popup-container">
+                    <div class="popup-header">${umkmData.name}</div>
+                    <div class="popup-rating">⭐ ${umkmData.rating} <span>(${umkmData.reviews})</span></div>
+                    <div class="popup-category">${umkmData.category}</div>
+                    <img src="${umkmData.imageUrl}" alt="${umkmData.name}" class="popup-image" />
+                    <div class="popup-address"><i class="fas fa-map-marker-alt"></i> ${umkmData.alamat}</div>
+                    <div class="popup-hours"><i class="fas fa-clock"></i> <span>${umkmData.buka}</span></div>
+                    <div class="popup-contact"><i class="fas fa-phone-alt"></i> ${umkmData.phone}</div>
+                </div>
+            `);
+
+        fetch("./jalanBentengAnjay.geojson")
+          .then((response) => response.json())
+          .then((geojsonData) => {
+            L.geoJSON(geojsonData, {
+              style: {
+                color: "#f0f0f0",
+                weight: 3,
+                opacity: 1,
+              },
+            }).addTo(map);
+          })
+          .catch((error) =>
+            console.error("Error loading jalan GeoJSON:", error)
+          );
+
+        fetch("./kecamatanBenteng.geojson")
+          .then((response) => response.json())
+          .then((geojsonData) => {
+            L.geoJSON(geojsonData, {
+              style: {
+                color: "#333",
+                weight: 1.5,
+                opacity: 0.8,
+                fillColor: "#333",
+                fillOpacity: 0.1,
+              },
+            }).addTo(map);
+          })
+          .catch((error) =>
+            console.error("Error loading kecamatanBenteng GeoJSON:", error)
+          );
+      });
+        </script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </body>
+</html>
